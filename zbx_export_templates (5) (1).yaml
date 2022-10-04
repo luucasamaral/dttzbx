@@ -1,0 +1,60 @@
+zabbix_export:
+  version: '5.4'
+  date: '2022-09-05T13:36:45Z'
+  groups:
+    -
+      uuid: 566042c660954f07bfeba828fe5d07ba
+      name: DOWNDETECTOR
+  templates:
+    -
+      uuid: 97138599745b4f07801cbf6550b04f7f
+      template: 'RR DownDetector Discovery'
+      name: 'RR DownDetector Discovery'
+      groups:
+        -
+          name: DOWNDETECTOR
+      discovery_rules:
+        -
+          uuid: 4bb1c0fb3a20465a9b8afef898c5aa9b
+          name: 'Descoberta Site'
+          type: EXTERNAL
+          key: downdetectorDiscovery.py
+          delay: 5m
+          item_prototypes:
+            -
+              uuid: 6569d6f9d4914db5ae699f68239083af
+              name: '{#SITE_NOME}'
+              type: EXTERNAL
+              key: 'downdetector.py[{#SITE_ID}]'
+              delay: 5m
+              history: 7d
+              trends: 7d
+              valuemap:
+                name: 'Status Downdetector'
+              tags:
+                -
+                  tag: Application
+                  value: Site
+              trigger_prototypes:
+                -
+                  uuid: a62e07a370bf4f52aeb9142cbfd5043c
+                  expression: 'avg(/RR DownDetector Discovery/downdetector.py[{#SITE_ID}],10m)=3'
+                  name: '*{#SITE_NOME}* está instável'
+                  priority: HIGH
+      valuemaps:
+        -
+          uuid: 05d7e8f179174789a509ddbb4fa80063
+          name: 'Status Downdetector'
+          mappings:
+            -
+              value: '0'
+              newvalue: Error
+            -
+              value: '1'
+              newvalue: Estável
+            -
+              value: '2'
+              newvalue: Intermitências
+            -
+              value: '3'
+              newvalue: Instável

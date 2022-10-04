@@ -1,0 +1,21 @@
+zabbix_export:
+  version: '5.4'
+  date: '2022-09-05T13:36:10Z'
+  groups:
+    -
+      uuid: 566042c660954f07bfeba828fe5d07ba
+      name: DOWNDETECTOR
+  hosts:
+    -
+      host: DOWNDETECTOR
+      name: DOWNDETECTOR
+      templates:
+        -
+          name: 'RR DownDetector Discovery'
+      groups:
+        -
+          name: DOWNDETECTOR
+      interfaces:
+        -
+          interface_ref: if1
+      inventory_mode: DISABLED
