@@ -4,7 +4,7 @@ apt update
 apt install -y ruby screen figlet toilet cowsay lolcat boxes  > /dev/null 2>&1
 toilet -w 100 -f smmono9 Zuke Monitor | lolcat
 toilet -w 82 -f mini Iniciando... | lolcat
-apt apt install python3-pip
+apt install python3-pip
 pip3 install bs4
 pip3 install requests
 pip3 install cloudscraper
