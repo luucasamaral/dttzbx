@@ -1,0 +1,22 @@
+#!/bin/bash
+##SCRIPT DOWNDETECTOR##
+apt update
+apt install -y ruby screen figlet toilet cowsay lolcat boxes  > /dev/null 2>&1
+toilet -w 100 -f smmono9 Zuke Monitor | lolcat
+toilet -w 82 -f mini Iniciando... | lolcat
+apt apt install python3-pip
+pip3 install bs4
+pip3 install requests
+pip3 install cloudscraper
+cd /temp/
+wget https://github.com/luucasamaral/dttzbx/archive/refs/heads/main.zip
+apt install unzip
+unzip main.zip
+cd dttzbx-main/
+mv downdetector* /usr/lib/zabbix/externalscripts
+cd /usr/lib/zabbix/externalscripts
+chown zabbix. /usr/lib/zabbix/externalscripts/downdetector*
+chmod a+x /usr/lib/zabbix/externalscripts/downdetector*.py
+chmod a+x /usr/lib/zabbix/externalscripts/downdetectorlist*.list
+service grafana-server restart
+toilet -w 100 -f mini FIM. | lolcat
