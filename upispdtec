@@ -18,5 +18,13 @@ cd /usr/lib/zabbix/externalscripts
 chown zabbix. /usr/lib/zabbix/externalscripts/downdetector*
 chmod a+x /usr/lib/zabbix/externalscripts/downdetector*.py
 chmod a+x /usr/lib/zabbix/externalscripts/downdetectorlist*.list
+wget https://raw.githubusercontent.com/luucasamaral/dttzbx/main/dttredes
+wget https://raw.githubusercontent.com/luucasamaral/dttzbx/main/dttredes1
+cat dttredes | jq '. * {overwrite: true, dashboard: {id: null}}' | curl -s -k -u "$grafana_cred" -XPOST -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    $grafana_host/api/dashboards/import  -d  @- ;
+    cat dttredes1 | jq '. * {overwrite: true, dashboard: {id: null}}' | curl -s -k -u "$grafana_cred" -XPOST -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    $grafana_host/api/dashboards/import  -d  @- ;
 service grafana-server restart
 toilet -w 100 -f mini FIM. | lolcat
