@@ -18,6 +18,12 @@ cd /usr/lib/zabbix/externalscripts
 chown zabbix. /usr/lib/zabbix/externalscripts/downdetector*
 chmod a+x /usr/lib/zabbix/externalscripts/downdetector*.py
 chmod a+x /usr/lib/zabbix/externalscripts/downdetectorlist*.list
+clear
+grafana_host="http://localhost:3000"
+grafana_cred="admin:admin"
+grafana_datasource="zabbix"
+apt install -y parallel jq curl httpie nmap ncat dnsutils unzip snmp-mibs-downloader htop speedtest-cli iotop nmap silversearcher-ag ngrep -y   > /dev/null 2>&1
+snap install gotop
 wget https://raw.githubusercontent.com/luucasamaral/dttzbx/main/dttredes
 wget https://raw.githubusercontent.com/luucasamaral/dttzbx/main/dttredes1
 cat dttredes | jq '. * {overwrite: true, dashboard: {id: null}}' | curl -s -k -u "$grafana_cred" -XPOST -H "Accept: application/json" \
