@@ -2,7 +2,7 @@
 ##SCRIPT DOWNDETECTOR##
 apt update
 apt install -y ruby screen figlet toilet cowsay lolcat boxes  > /dev/null 2>&1
-toilet -w 100 -f smmono9 Zuke Monitor | lolcat
+toilet -w 100 -f smmono9 Cloud ISP | lolcat
 toilet -w 82 -f mini Iniciando... | lolcat
 apt install python3-pip
 pip3 install bs4
